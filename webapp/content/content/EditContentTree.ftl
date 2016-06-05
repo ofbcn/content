@@ -17,7 +17,7 @@
   under the License.
   -->
 <form name="editContentTree" action="<#if parameters.rename?has_content><@noerpUrl>updateDocumentTree</@noerpUrl><#else><@noerpUrl>addDocumentToTree</@noerpUrl></#if>" method="post">
-    <#assign content  = delegator.findOne("Content",Static["org.ofbiz.base.util.UtilMisc"].toMap("contentId",parameters.contentId), false)/>
+    <#assign content  = delegator.findOne("Content",Static["org.noerp.base.util.UtilMisc"].toMap("contentId",parameters.contentId), false)/>
     <#if parameters.rename?has_content>
         <div class="h3">${uiLabelMap.ContentRenameFolder}</div>
         ${uiLabelMap.ContentRenameFolder} : ${content.contentName}<br />

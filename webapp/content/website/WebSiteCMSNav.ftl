@@ -379,7 +379,7 @@ var rawdata_errors = [
                 height   : 350,
                 toolbar  : 'maxi',
                 doctype  : '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">', //'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN">',
-                cssfiles : ['/images/jquery/plugins/elrte-1.3/css/elrte-inner.css']
+                cssfiles : ['/assets/jquery/plugins/elrte-1.3/css/elrte-inner.css']
             }
             jQuery('#cmseditor').elrte(opts);
         }
