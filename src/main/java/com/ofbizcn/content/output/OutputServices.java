@@ -26,6 +26,7 @@ import java.io.InputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -47,8 +48,6 @@ import javax.print.attribute.PrintServiceAttributeSet;
 import javax.print.attribute.standard.PrinterName;
 import javax.xml.transform.stream.StreamSource;
 
-import javolution.util.FastMap;
-
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.MimeConstants;
 import org.noerp.base.util.Debug;
@@ -63,9 +62,10 @@ import org.noerp.entity.util.EntityUtilProperties;
 import org.noerp.service.DispatchContext;
 import org.noerp.service.ServiceUtil;
 import org.noerp.webapp.view.ApacheFopWorker;
-import org.noerp.widget.renderer.fo.FoFormRenderer;
-import org.noerp.widget.renderer.fo.FoScreenRenderer;
 import org.noerp.widget.renderer.ScreenRenderer;
+import org.noerp.widget.renderer.ScreenStringRenderer;
+import org.noerp.widget.renderer.fo.FoFormRenderer;
+import org.noerp.widget.renderer.macro.MacroScreenRenderer;
 
 
 /**
@@ -75,7 +75,6 @@ public class OutputServices {
 
     public final static String module = OutputServices.class.getName();
 
-    protected static final FoScreenRenderer foScreenRenderer = new FoScreenRenderer();
     protected static final FoFormRenderer foFormRenderer = new FoFormRenderer();
     public static final String resource = "ContentUiLabels";
 
@@ -87,7 +86,7 @@ public class OutputServices {
         String printerContentType = (String) serviceContext.remove("printerContentType");
 
         if (UtilValidate.isEmpty(screenContext)) {
-            screenContext = FastMap.newInstance();
+            screenContext = new HashMap<String, Object>();
         }
         screenContext.put("locale", locale);
         if (UtilValidate.isEmpty(contentType)) {
@@ -104,7 +103,10 @@ public class OutputServices {
 
             Writer writer = new StringWriter();
             // substitute the freemarker variables...
-            ScreenRenderer screensAtt = new ScreenRenderer(writer, screenContextTmp, foScreenRenderer);
+            ScreenStringRenderer foScreenStringRenderer = new MacroScreenRenderer(EntityUtilProperties.getPropertyValue("widget", "screenfop.name", dctx.getDelegator()),
+                            EntityUtilProperties.getPropertyValue("widget", "screenfop.screenrenderer", dctx.getDelegator()));
+
+            ScreenRenderer screensAtt = new ScreenRenderer(writer, screenContextTmp, foScreenStringRenderer);
             screensAtt.populateContextForService(dctx, screenContext);
             screenContextTmp.putAll(screenContext);
             screensAtt.getContext().put("formStringRenderer", foFormRenderer);
@@ -200,7 +202,7 @@ public class OutputServices {
         String fileName = (String) serviceContext.remove("fileName");
 
         if (UtilValidate.isEmpty(screenContext)) {
-            screenContext = FastMap.newInstance();
+            screenContext = new HashMap<String, Object>();
         }
         screenContext.put("locale", locale);
         if (UtilValidate.isEmpty(contentType)) {
@@ -213,7 +215,9 @@ public class OutputServices {
 
             Writer writer = new StringWriter();
             // substitute the freemarker variables...
-            ScreenRenderer screensAtt = new ScreenRenderer(writer, screenContextTmp, foScreenRenderer);
+            ScreenStringRenderer foScreenStringRenderer = new MacroScreenRenderer(EntityUtilProperties.getPropertyValue("widget", "screenfop.name", dctx.getDelegator()),
+                    EntityUtilProperties.getPropertyValue("widget", "screenfop.screenrenderer", dctx.getDelegator()));
+            ScreenRenderer screensAtt = new ScreenRenderer(writer, screenContextTmp, foScreenStringRenderer);
             screensAtt.populateContextForService(dctx, screenContext);
             screenContextTmp.putAll(screenContext);
             screensAtt.getContext().put("formStringRenderer", foFormRenderer);
@@ -240,7 +244,7 @@ public class OutputServices {
                 fileName += ".txt";
             }
             if (UtilValidate.isEmpty(filePath)) {
-                filePath = EntityUtilProperties.getPropertyValue("content.properties", "content.output.path", "/output", delegator);
+                filePath = EntityUtilProperties.getPropertyValue("content", "content.output.path", "/output", delegator);
             }
             File file = new File(filePath, fileName);
 
