@@ -266,12 +266,12 @@ public class ContentServicesComplex {
                 contentAssocDataResourceView = delegator.makeValue(viewName);
                 contentAssocDataResourceView.setAllFields(content, true, null, null);
             }
-            SimpleMapProcessor.runSimpleMapProcessor("component://content/script/org/ofbiz/content/ContentManagementMapProcessors.xml", "contentAssocOut", contentAssoc, contentAssocDataResourceView, FastList.newInstance(), locale);
+            SimpleMapProcessor.runSimpleMapProcessor("component://content/script/com/ofbizcn/content/ContentManagementMapProcessors.xml", "contentAssocOut", contentAssoc, contentAssocDataResourceView, FastList.newInstance(), locale);
             String dataResourceId = content.getString("dataResourceId");
             if (UtilValidate.isNotEmpty(dataResourceId))
                 dataResource = content.getRelatedOne("DataResource", true);
             if (dataResource != null) {
-                SimpleMapProcessor.runSimpleMapProcessor("component://content/script/org/ofbiz/content/ContentManagementMapProcessors.xml", "dataResourceOut", dataResource, contentAssocDataResourceView, FastList.newInstance(), locale);
+                SimpleMapProcessor.runSimpleMapProcessor("component://content/script/com/ofbizcn/content/ContentManagementMapProcessors.xml", "dataResourceOut", dataResource, contentAssocDataResourceView, FastList.newInstance(), locale);
             }
             contentAssocDataResourceList.add(contentAssocDataResourceView);
         }
