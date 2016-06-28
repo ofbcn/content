@@ -42,9 +42,11 @@ under the License.
     <eca entity="ContentRole" operation="create-store" event="return">
         <action service="indexContentKeywords" mode="sync"/>
     </eca>
+    <!-- 
     <eca entity="ProductContent" operation="create-store" event="return">
         <action service="indexContentKeywords" mode="sync"/>
     </eca>
+     -->
     <eca entity="ProductCategoryContent" operation="create-store" event="return">
         <action service="indexContentKeywords" mode="sync"/>
     </eca>
