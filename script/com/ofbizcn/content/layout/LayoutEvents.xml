@@ -142,7 +142,7 @@ under the License.
         <log level="always" message="dataResourceId: ${dataResourceId}"/>
         <call-class-method class-name="com.ofbizcn.content.ContentManagementWorker" method-name="mruAdd">
             <field field="request" type="javax.servlet.http.HttpServletRequest"/>
-            <field field="subContent" type="org.ofbiz.entity.GenericEntity"/>
+            <field field="subContent" type="org.noerp.entity.GenericEntity"/>
         </call-class-method>
         -->
     </simple-method>
@@ -238,7 +238,7 @@ under the License.
         <log level="always" message="dataResourceId: ${dataResourceId}"/>
         <call-class-method class-name="com.ofbizcn.content.ContentManagementWorker" method-name="mruAdd">
             <field field="request" type="javax.servlet.http.HttpServletRequest"/>
-            <field field="subContent" type="org.ofbiz.entity.GenericEntity"/>
+            <field field="subContent" type="org.noerp.entity.GenericEntity"/>
         </call-class-method>
         -->
     </simple-method>
@@ -296,7 +296,7 @@ under the License.
         <log level="always" message="dataResourceId: ${dataResourceId}"/>
         <call-class-method class-name="com.ofbizcn.content.ContentManagementWorker" method-name="mruAdd">
             <field field="request" type="javax.servlet.http.HttpServletRequest"/>
-            <field field="subContent" type="org.ofbiz.entity.GenericEntity"/>
+            <field field="subContent" type="org.noerp.entity.GenericEntity"/>
         </call-class-method>
         -->
     </simple-method>

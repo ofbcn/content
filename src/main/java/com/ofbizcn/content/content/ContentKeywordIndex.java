@@ -118,6 +118,7 @@ public class ContentKeywordIndex {
         }
 
         // Product
+        /*
         List<GenericValue> productContentList = EntityQuery.use(delegator).from("ProductContent").where("contentId", contentId).queryList();
         for (GenericValue productContent: productContentList) {
             GenericValue product = EntityQuery.use(delegator).from("Product").where("productId", productContent.get("productId")).queryOne();
@@ -129,8 +130,9 @@ public class ContentKeywordIndex {
                 addWeightedKeywordSourceString(product, "longDescription", strings);
             }
         }
-
+         */
         // ProductCategory
+        /*
         List<GenericValue> productCategoryContentList = EntityQuery.use(delegator).from("ProductCategoryContent").where("contentId", contentId).queryList();
         for (GenericValue productCategoryContent: productCategoryContentList) {
             GenericValue productCategory = EntityQuery.use(delegator).from("ProductCategory").where("productCategoryId", productCategoryContent.getString("productCategoryId")).queryOne();
@@ -140,7 +142,7 @@ public class ContentKeywordIndex {
                 addWeightedKeywordSourceString(productCategory, "longDescription", strings);
             }
         }
-
+        */
         // PartyContent
         List<GenericValue> partyContents = EntityQuery.use(delegator).from("PartyContent").where("contentId", contentId).queryList();
         for (GenericValue partyContent: partyContents) {

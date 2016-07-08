@@ -758,7 +758,7 @@ under the License.
         <check-errors/>
         <set field="absolute" value="true" type="Boolean"/>
         <call-class-method method-name="getDataResourceContentUploadPath" class-name="com.ofbizcn.content.data.DataResourceWorker" ret-field="uploadPath">
-            <field field="delegator" type="org.ofbiz.entity.Delegator"/>
+            <field field="delegator" type="org.noerp.entity.Delegator"/>
             <field field="absolute" type="boolean"/>
         </call-class-method>
         <log level="info" message="[attachLocalFileToDataResource] - Found Subdir : ${uploadPath}"/>
@@ -828,7 +828,7 @@ under the License.
 
         <set field="absolute" value="false" type="Boolean"/>
         <call-class-method method-name="getDataResourceContentUploadPath" class-name="com.ofbizcn.content.data.DataResourceWorker" ret-field="uploadPath">
-            <field field="delegator" type="org.ofbiz.entity.Delegator"/>
+            <field field="delegator" type="org.noerp.entity.Delegator"/>
             <field field="absolute" type="boolean"/>
         </call-class-method>
         <log level="info" message="[attachLocalFileToDataResource] - Found Subdir : ${uploadPath}"/>

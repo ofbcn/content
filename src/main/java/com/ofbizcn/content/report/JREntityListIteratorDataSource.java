@@ -74,7 +74,7 @@ public class JREntityListIteratorDataSource implements JRDataSource {
                 value = this.currentEntity.get(jrField.getName());
             } catch (IllegalArgumentException e) {
                 try {
-                    value = this.currentEntity.get(org.ofbiz.entity.model.ModelUtil.dbNameToVarName(jrField.getName()));
+                    value = this.currentEntity.get(org.noerp.entity.model.ModelUtil.dbNameToVarName(jrField.getName()));
                 }  catch (IllegalArgumentException ex) {
                     throw new JRException("The specified field name [" + jrField.getName() + "] is not a valid field-name for the entity: " + this.currentEntity.getEntityName(), e);
                 }

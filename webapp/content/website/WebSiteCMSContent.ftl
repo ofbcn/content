@@ -147,7 +147,7 @@
         <#assign contentRoot = parameters.contentRoot/>
     </#if>
     <#if (currentPurposes?has_content)>
-        <#assign currentPurpose = Static["org.ofbiz.entity.util.EntityUtil"].getFirst(currentPurposes) />
+        <#assign currentPurpose = Static["org.noerp.entity.util.EntityUtil"].getFirst(currentPurposes) />
     </#if>
     <#if (content?has_content)>
         <#assign actionPrefix = "/update"/>

@@ -503,7 +503,7 @@ public class DataResourceWorker implements DataResourceWorkerInterface {
      * @return the absolute path to the directory where the file should be placed
      */
     public static String getDataResourceContentUploadPath(String initialPath, double maxFiles, boolean absolute) {
-        String ofbizHome = System.getProperty("ofbiz.home");
+        String ofbizHome = System.getProperty("noerp.home");
 
         if (!initialPath.startsWith("/")) {
             initialPath = "/" + initialPath;
