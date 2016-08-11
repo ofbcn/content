@@ -424,7 +424,7 @@ public class DataResourceWorker implements DataResourceWorkerInterface {
                 throw new GeneralException("File (" + objectInfo + ") is not absolute");
             }
         } else if (dataResourceTypeId.equals("OFBIZ_FILE") || dataResourceTypeId.equals("OFBIZ_FILE_BIN")) {
-            String prefix = System.getProperty("ofbiz.home");
+            String prefix = System.getProperty("noerp.home");
 
             String sep = "";
             if (objectInfo.indexOf("/") != 0 && prefix.lastIndexOf("/") != (prefix.length() - 1)) {
@@ -674,12 +674,12 @@ public class DataResourceWorker implements DataResourceWorkerInterface {
 
             } else if ("XSLT".equals(dataTemplateTypeId)) {
                 File sourceFileLocation = null;
-                File targetFileLocation = new File(System.getProperty("ofbiz.home")+"/runtime/tempfiles/docbook.css");
+                File targetFileLocation = new File(System.getProperty("noerp.home")+"/runtime/tempfiles/docbook.css");
                 if (templateContext.get("visualThemeId") != null) {
                     Map<String, Object> layoutSettings  = UtilGenerics.checkMap(templateContext.get("layoutSettings"));
                     List<String> docbookStyleSheets = UtilGenerics.checkList(layoutSettings.get("VT_DOCBOOKSTYLESHEET"));
                     String docbookStyleLocation = docbookStyleSheets.get(0);
-                    sourceFileLocation = new File(System.getProperty("ofbiz.home")+"/themes"+docbookStyleLocation);
+                    sourceFileLocation = new File(System.getProperty("noerp.home")+"/themes"+docbookStyleLocation);
                 }
                 if (sourceFileLocation != null && sourceFileLocation.exists()) {
                     UtilMisc.copyFile(sourceFileLocation,targetFileLocation);
@@ -687,7 +687,7 @@ public class DataResourceWorker implements DataResourceWorkerInterface {
                     String defaultVisualThemeId = EntityUtilProperties.getPropertyValue("general", "VISUAL_THEME", delegator);
                     if (defaultVisualThemeId != null) {
                         GenericValue themeValue = EntityQuery.use(delegator).from("VisualThemeResource").where("visualThemeId", defaultVisualThemeId, "resourceTypeEnumId", "VT_DOCBOOKSTYLESHEET", "sequenceId", "01").cache().queryOne();
-                        sourceFileLocation = new File(System.getProperty("ofbiz.home") + "/themes" + themeValue.get("resourceValue"));
+                        sourceFileLocation = new File(System.getProperty("noerp.home") + "/themes" + themeValue.get("resourceValue"));
                         UtilMisc.copyFile(sourceFileLocation,targetFileLocation);
                     }
                 }
@@ -929,7 +929,7 @@ public class DataResourceWorker implements DataResourceWorkerInterface {
             FileReader in = new FileReader(file);
             UtilIO.copy(in, true, out);
         } else if (dataResourceTypeId.equals("OFBIZ_FILE") && UtilValidate.isNotEmpty(objectInfo)) {
-            String prefix = System.getProperty("ofbiz.home");
+            String prefix = System.getProperty("noerp.home");
             String sep = "";
             if (objectInfo.indexOf("/") != 0 && prefix.lastIndexOf("/") != (prefix.length() - 1)) {
                 sep = "/";

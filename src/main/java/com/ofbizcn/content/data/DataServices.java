@@ -223,7 +223,7 @@ public class DataServices {
                 return ServiceUtil.returnError(UtilProperties.getMessage(resource, "ContentLocalFileDoesNotPointToAbsoluteLocation", locale));
             }
         } else if (dataResourceTypeId.equals("OFBIZ_FILE") || dataResourceTypeId.equals("OFBIZ_FILE_BIN")) {
-            prefix = System.getProperty("ofbiz.home");
+            prefix = System.getProperty("noerp.home");
             if (objectInfo.indexOf("/") != 0 && prefix.lastIndexOf("/") != (prefix.length() - 1)) {
                 sep = "/";
             }
@@ -418,7 +418,7 @@ public class DataServices {
                     throw new GenericServiceException("File: " + fileName + " is not absolute.");
                 }
             } else if (dataResourceTypeId.startsWith("OFBIZ_FILE")) {
-                prefix = System.getProperty("ofbiz.home");
+                prefix = System.getProperty("noerp.home");
                 if (objectInfo.indexOf("/") != 0 && prefix.lastIndexOf("/") != (prefix.length() - 1)) {
                     sep = "/";
                 }
